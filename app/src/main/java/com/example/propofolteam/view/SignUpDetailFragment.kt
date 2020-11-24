@@ -1,19 +1,15 @@
 package com.example.propofolteam.view
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.provider.CalendarContract.Attendees.query
-import android.provider.CalendarContract.EventDays.query
-import android.provider.CalendarContract.Instances.query
-import android.provider.CalendarContract.Reminders.query
 import android.provider.OpenableColumns
 import android.text.Editable
 import android.text.TextWatcher
@@ -21,9 +17,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentResolverCompat.query
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -37,7 +31,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
 
-class SignUpDetailFragment : Fragment(){
+
+class SignUpDetailFragment : Fragment() {
 
     //이미지 관련 상수
     private val profileImagePick = 70
@@ -77,9 +72,27 @@ class SignUpDetailFragment : Fragment(){
             }
         })
         view.sign_up_btn.setOnClickListener {
-            email  = (activity as MainActivity).email
+            email = (activity as MainActivity).email
             password = (activity as MainActivity).password
-            setupRetrofit.setupRetrofit(email, password, userName, profileImage, imageName, requireActivity().application, requireContext())
+            if(profileImage == null){
+
+                val bos = ByteArrayOutputStream()
+                val drawable = getDrawable(requireContext(),R.drawable.user_profile)
+                val bitmapDrawable = drawable as BitmapDrawable
+                val bitmap = bitmapDrawable.bitmap
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos)
+                profileImage = RequestBody.create(MultipartBody.FORM, bos.toByteArray())
+                Log.d("exampletest", "test : $profileImage") //input 스트림
+            }
+            setupRetrofit.setupRetrofit(
+                email,
+                password,
+                userName,
+                profileImage,
+                imageName,
+                requireActivity().application,
+                requireContext()
+            )
         }
         return view
     }
@@ -99,9 +112,14 @@ class SignUpDetailFragment : Fragment(){
                     returnUri = data?.data!!
 
                     //이미지 파일 받아오기
-                    val inputStream = requireContext().contentResolver.openInputStream(returnUri) //input 스트림
+                    val inputStream =
+                        requireContext().contentResolver.openInputStream(returnUri) //input 스트림
                     var bm: Bitmap = BitmapFactory.decodeStream(inputStream) //비트맵 변환
-                    bm = rotateImageClass.rotateImage(data.data!!, bm, requireContext().contentResolver) //이미지 회전
+                    bm = rotateImageClass.rotateImage(
+                        data.data!!,
+                        bm,
+                        requireContext().contentResolver
+                    ) //이미지 회전
                     val bos = ByteArrayOutputStream()
                     bm.compress(Bitmap.CompressFormat.JPEG, 100, bos)
                     profileImage = RequestBody.create(MultipartBody.FORM, bos.toByteArray())
@@ -115,7 +133,8 @@ class SignUpDetailFragment : Fragment(){
                         .transform(CenterCrop(), RoundedCorners(1000000000))
                         .into(sign_up_profile)
 
-                    returnCursor = requireContext().contentResolver.query(returnUri, null, null, null, null)
+                    returnCursor =
+                        requireContext().contentResolver.query(returnUri, null, null, null, null)
 
                     //이미지 이름
                     val nameIndex = returnCursor!!.getColumnIndex(OpenableColumns.DISPLAY_NAME)
@@ -125,18 +144,11 @@ class SignUpDetailFragment : Fragment(){
                     returnCursor.close()
 
                 }
-
                 else -> {
-                    Toast.makeText(
-                        requireContext().applicationContext,
-                        "이미지를 제대로 가져오지 못하였습니다.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
 
+                }
             }
         }
-
     }
 
     //권한 허용 확인
@@ -156,6 +168,7 @@ class SignUpDetailFragment : Fragment(){
             }
         }
     }
+
     private fun checkNameMsg() {
         if (name.text.toString().isNotBlank()) {
             view?.name?.setBackgroundResource(R.drawable.edit_login)
