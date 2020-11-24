@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract.Attendees.query
@@ -23,6 +24,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContentResolverCompat.query
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -65,6 +67,17 @@ class SignUpDetailFragment : Fragment(){
             imageIntent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(imageIntent, profileImagePick)
         }
+        if(profileImage == null){
+
+            val bos = ByteArrayOutputStream()
+            val drawable = getDrawable(requireContext(),R.drawable.user_profile)
+            val bitmapDrawable = drawable as BitmapDrawable
+            val bitmap = bitmapDrawable.bitmap
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos)
+            profileImage = RequestBody.create(MultipartBody.FORM, bos.toByteArray())
+            Log.d("exampletest", "test : $profileImage") //input 스트림
+        }
+
         view.name.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {

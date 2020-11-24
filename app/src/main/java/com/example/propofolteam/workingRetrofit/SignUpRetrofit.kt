@@ -2,12 +2,15 @@ package com.example.propofolteam.workingRetrofit
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.propofolteam.R
 import com.example.propofolteam.module.SignUpDialog
 import com.example.propofolteam.network.Service
+import com.example.propofolteam.view.MainActivity
+import com.example.propofolteam.view.MainBottomActivity
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONObject
@@ -59,7 +62,7 @@ class SignUpRetrofit {
             .enqueue(object : Callback<JSONObject> {
 
                 val signUpDialog = SignUpDialog()
-
+                val intent = Intent(context, MainActivity::class.java)
                 override fun onResponse(
                     call: Call<JSONObject>,
                     response: Response<JSONObject>
@@ -69,7 +72,8 @@ class SignUpRetrofit {
                         response.code(),
                         context,
                         response.errorBody()?.string().toString(),
-                        sweetAlertDialog
+                        sweetAlertDialog,
+                        intent
                     )
                 }
 
