@@ -2,6 +2,7 @@ package com.example.propofolteam.network
 
 import com.example.propofolteam.data.EmailLoginRequest
 import com.example.propofolteam.data.EmailLoginResponse
+import com.example.propofolteam.data.UserProfileResponse
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -23,4 +24,10 @@ interface Service {
         @Header("Authorization") token: String,
         @Body postBody: RequestBody
     ):Call<JSONObject>
+
+    @GET("/user/profile?")
+    fun getProfile(
+        @Query("page") page : String,
+        @Header("Authorization") token: String
+    ):Call<UserProfileResponse>
 }
