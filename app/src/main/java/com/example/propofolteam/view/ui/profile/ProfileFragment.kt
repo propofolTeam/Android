@@ -9,6 +9,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.propofolteam.R
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import kotlinx.android.synthetic.main.fragment_profile.view.profileImg
+import kotlinx.android.synthetic.main.modify_profile.view.*
 
 
 class ProfileFragment : Fragment() {
@@ -25,6 +27,7 @@ class ProfileFragment : Fragment() {
             .circleCrop()
             .placeholder(R.mipmap.ic_launcher)
             .into(view.profileImg)
+
 
         view.modifyButton.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_modifyProfile)
