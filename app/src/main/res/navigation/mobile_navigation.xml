@@ -6,6 +6,11 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/modifyProfile"
+        android:name="com.example.propofolteam.view.ui.profile.ModifyProfile"
+        android:label="modify_profile"
+        tools:layout="@layout/modify_profile" />
+    <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.propofolteam.view.ui.home.HomeFragment"
         android:label="@string/title_home"
@@ -19,6 +24,10 @@
         android:id="@+id/profileFragment"
         android:name="com.example.propofolteam.view.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_modifyProfile"
+            app:destination="@id/modifyProfile" />
+    </fragment>
 
 </navigation>
