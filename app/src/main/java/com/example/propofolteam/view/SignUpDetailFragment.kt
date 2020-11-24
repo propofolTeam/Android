@@ -45,6 +45,8 @@ class SignUpDetailFragment : Fragment(){
     private var userName: String = ""
     private var imageName: String = ""
     private var profileImage: RequestBody? = null
+    private var email: String = ""
+    private var password: String = ""
 
     private val rotateImageClass = RotateImage() //이미지 회전
     private val setupRetrofit = SignUpRetrofit() //retrofit setup
@@ -75,7 +77,7 @@ class SignUpDetailFragment : Fragment(){
             }
         })
         sign_up_btn.setOnClickListener {
-            setupRetrofit.setupRetrofit(email, password, userName, profileImage, imageName, application, this)
+            setupRetrofit.setupRetrofit(email, password, userName, profileImage, imageName, requireActivity().application, this)
         }
         return view
     }
