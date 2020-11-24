@@ -19,6 +19,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -58,6 +59,9 @@ class SignUpDetailFragment : Fragment() {
             imageIntent.type = "image/*"
             imageIntent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(imageIntent, profileImagePick)
+        }
+        view.sign_up_detail_have_account.setOnClickListener {
+            findNavController().navigate(R.id.action_signUpDetailFragment_to_loginFragment)
         }
         view.name.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
