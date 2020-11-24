@@ -14,4 +14,7 @@
     <string name="back">back</string>
     <string name="file">file</string>
     <string name="filename">fileName</string>
+    <string name="_10">10</string>
+    <string name="feedback">content</string>
+    <string name="questionContent">피드백갱</string>
 </resources>

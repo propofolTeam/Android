@@ -1,6 +1,6 @@
 package com.example.propofolteam.data
 
-data class FeedResponseItemData(
+data class FeedItemResponse(
     val commentCount: Int,
     val createdAt: String,
     val id: Int,
