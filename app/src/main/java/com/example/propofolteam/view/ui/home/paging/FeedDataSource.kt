@@ -1,8 +1,8 @@
-package com.junhyuk.daedo.main.bottomItem.home.paging
+package com.example.propofolteam.view.ui.home.paging
 
-import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.example.propofolteam.data.FeedData
+import com.example.propofolteam.data.FeedResponseItemData
 import com.junhyuk.daedo.main.bottomItem.home.workinRetrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -11,50 +11,48 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FeedDataSource : PageKeyedDataSource<Int, FeedData>() {
+class FeedDataSource : PageKeyedDataSource<Int, FeedResponseItemData>() {
 
     internal val firstPage = 1
     private val retrofitClient = RetrofitClient()
-    private var feedDataList = ArrayList<FeedData>()
+    private var feedDataList = ArrayList<FeedResponseItemData>()
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, FeedData>
+        callback: LoadInitialCallback<Int, FeedResponseItemData>
     ) {
         CoroutineScope(IO).launch {
             retrofitClient
                 .getInstance()
                 ?.getApi()
                 ?.requestFeed(firstPage)
-                ?.enqueue(object : Callback<List<FeedData>> {
+                ?.enqueue(object : Callback<FeedData> {
                     override fun onResponse(
-                        call: Call<List<FeedData>>,
-                        response: Response<List<FeedData>>
+                        call: Call<FeedData>,
+                        response: Response<FeedData>
                     ) {
                         if (response.body() != null) {
-                            feedDataList = response.body() as ArrayList<FeedData>
-                            Log.d("안드 스발것", "data: $feedDataList")
-                            callback.onResult(response.body()!!, null, firstPage + 1)
+                            callback.onResult(response.body()!!.response, null, firstPage + 1)
                         }
                     }
 
-                    override fun onFailure(call: Call<List<FeedData>>, t: Throwable) {
+                    override fun onFailure(call: Call<FeedData>, t: Throwable) {
 
                     }
                 })
         }
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, FeedData>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, FeedResponseItemData>) {
         CoroutineScope(IO).launch {
             retrofitClient
                 .getInstance()
                 ?.getApi()
                 ?.requestFeed(params.key)
-                ?.enqueue(object : Callback<List<FeedData>> {
+                ?.enqueue(object : Callback<FeedData> {
                     override fun onResponse(
-                        call: Call<List<FeedData>>,
-                        response: Response<List<FeedData>>
+                        call: Call<FeedData>,
+                        response: Response<FeedData>
                     ) {
                         val key: Int? = if (params.key > 1) {
                             params.key - 1
@@ -62,26 +60,26 @@ class FeedDataSource : PageKeyedDataSource<Int, FeedData>() {
                             null
                         }
 
-                        callback.onResult(response.body()!!, key)
+                        callback.onResult(response.body()!!.response, key)
                     }
 
-                    override fun onFailure(call: Call<List<FeedData>>, t: Throwable) {
+                    override fun onFailure(call: Call<FeedData>, t: Throwable) {
 
                     }
                 })
         }
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, FeedData>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, FeedResponseItemData>) {
         CoroutineScope(IO).launch {
             retrofitClient
                 .getInstance()
                 ?.getApi()
                 ?.requestFeed(params.key)
-                ?.enqueue(object : Callback<List<FeedData>> {
+                ?.enqueue(object : Callback<FeedData> {
                     override fun onResponse(
-                        call: Call<List<FeedData>>,
-                        response: Response<List<FeedData>>
+                        call: Call<FeedData>,
+                        response: Response<FeedData>
                     ) {
 
 
@@ -93,12 +91,12 @@ class FeedDataSource : PageKeyedDataSource<Int, FeedData>() {
                             }
 
 
-                            callback.onResult(response.body()!!, key)
+                            callback.onResult(response.body()!!.response, key)
 
                         }
                     }
 
-                    override fun onFailure(call: Call<List<FeedData>>, t: Throwable) {
+                    override fun onFailure(call: Call<FeedData>, t: Throwable) {
 
                     }
                 })

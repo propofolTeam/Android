@@ -14,7 +14,6 @@ import com.example.propofolteam.R
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
-import kotlinx.android.synthetic.main.fragment_sign_up_detail.*
 import kotlinx.android.synthetic.main.fragment_sign_up_detail.view.*
 import java.util.regex.Matcher
 
@@ -26,15 +25,10 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
-        view?.intent_sign_up_detail?.isEnabled = false
-
         view.intent_sign_up_detail.setOnClickListener {
             (activity as MainActivity).email = view.sign_up_email.text.toString()
             (activity as MainActivity).password = view.sign_up_password.text.toString()
             findNavController().navigate(R.id.action_signUpFragment_to_signUpDetailFragment)
-        }
-        view.sign_up_have_account.setOnClickListener {
-            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         }
         view.sign_up_email.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -46,16 +40,6 @@ class SignUpFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable) {
                 checkEmail()
-            }
-        })
-        view.sign_up_password.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                checkPasswordMsg()
-            }
-
-            override fun afterTextChanged(s: Editable) {
-                checkPasswordMsg()
             }
         })
         return view
@@ -72,19 +56,17 @@ class SignUpFragment : Fragment() {
         return returnValue
     }
 
-    private fun checkEmail() {
+   private fun checkEmail() {
         if (isEmail(sign_up_email.text.toString())) {
             view?.sign_up_email?.setBackgroundResource(R.drawable.edit_login)
             checkEmail = true
-            checkButton(checkEmail)
-            checkPasswordMsg()
-        } else {
+                checkButton(checkEmail)
+             } else {
             view?.sign_up_email?.setBackgroundResource(R.drawable.email_false)
             checkEmail = false
             checkButton(checkEmail)
         }
     }
-
     private fun checkButton(checkEmail: Boolean) {
 
         this.checkEmail = checkEmail
@@ -94,19 +76,13 @@ class SignUpFragment : Fragment() {
 
             view?.intent_sign_up_detail?.setBackgroundResource(R.drawable.btn_shape)
             view?.intent_sign_up_detail?.isEnabled = true
+
         } else {
+
             view?.intent_sign_up_detail?.setBackgroundResource(R.drawable.btn_shape)
             view?.intent_sign_up_detail?.isEnabled = false
 
         }
     }
-    private fun checkPasswordMsg() {
-        if (sign_up_password.text.toString().isNotBlank()) {
-            view?.sign_up_password?.setBackgroundResource(R.drawable.edit_login)
-            view?.intent_sign_up_detail?.isEnabled = true
-        } else {
-            view?.sign_up_password?.setBackgroundResource(R.drawable.email_false)
-            view?.intent_sign_up_detail?.isEnabled = false
-        }
-    }
+
 }
