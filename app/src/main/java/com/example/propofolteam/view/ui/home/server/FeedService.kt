@@ -10,6 +10,6 @@ interface FeedService {
     @GET("/post")
     fun requestFeed(
         @Query ("page") page: Int
-    ): Call<List<FeedData>>
+    ): Call<FeedData>
 
 }
