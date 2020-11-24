@@ -18,4 +18,5 @@ interface Service {
     fun sendLoginInformation(
         @Body LoginInformation : EmailLoginRequest
     ): Call<EmailLoginResponse>
+    
 }

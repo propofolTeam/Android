@@ -9,7 +9,11 @@
         android:id="@+id/modifyProfile"
         android:name="com.example.propofolteam.view.ui.profile.ModifyProfile"
         android:label="modify_profile"
-        tools:layout="@layout/modify_profile" />
+        tools:layout="@layout/modify_profile" >
+        <action
+            android:id="@+id/action_modifyProfile_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.propofolteam.view.ui.home.HomeFragment"

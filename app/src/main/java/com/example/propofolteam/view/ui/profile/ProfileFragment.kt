@@ -24,6 +24,7 @@ class ProfileFragment : Fragment() {
             "https://lh6.ggpht.com/9SZhHdv4URtBzRmXpnWxZcYhkgTQurFuuQ8OR7WZ3R7fyTmha77dYkVvcuqMu3DLvMQ=w300"
         Glide.with(this)
             .load(url)
+            .override(400)
             .circleCrop()
             .placeholder(R.mipmap.ic_launcher)
             .into(view.profileImg)

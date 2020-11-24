@@ -1,5 +1,6 @@
 package com.example.propofolteam.view.ui.profile
 
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
@@ -10,15 +11,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.propofolteam.R
 import kotlinx.android.synthetic.main.fragment_intro.*
+import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile.view.profileImg
 import kotlinx.android.synthetic.main.modify_profile.*
 import kotlinx.android.synthetic.main.modify_profile.view.*
 
 
 class ModifyProfile : Fragment() {
+    @SuppressLint("RestrictedApi")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,12 +52,12 @@ class ModifyProfile : Fragment() {
 
 
         }
-
-
+        view.AcceptButton.setOnClickListener {
+            findNavController().navigate(R.id.action_modifyProfile_to_profileFragment)
+        }
         return view
     }
 
-    var resolver = activity?.contentResolver
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 1) {
             // Make sure the request was successful
@@ -61,9 +65,13 @@ class ModifyProfile : Fragment() {
                 var dataUri = data?.data
                 try {
                     // 선택한 이미지에서 비트맵 생성
-                    var bitmap : Bitmap = MediaStore.Images.Media.getBitmap(resolver, dataUri)
+                    var bitmap : Bitmap = MediaStore.Images.Media.getBitmap(activity?.contentResolver, dataUri)
                     // 이미지 표시
-                    profileImg.setImageBitmap(bitmap)
+                    Glide.with(this)
+                        .load(bitmap)
+                        .override(400)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .into(profileImg)
                     Log.d("modify","사진변경")
                 } catch (e: Exception) {
                     e.printStackTrace();
@@ -71,4 +79,5 @@ class ModifyProfile : Fragment() {
             }
         }
     }
+
 }
