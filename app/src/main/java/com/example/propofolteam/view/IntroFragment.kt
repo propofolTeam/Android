@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.propofolteam.R
+import kotlinx.android.synthetic.main.fragment_intro.view.*
+import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class IntroFragment : Fragment() {
     override fun onCreateView(
@@ -16,8 +18,11 @@ class IntroFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_intro, container, false)
-        view.findViewById<Button>(R.id.intent_login).setOnClickListener {
+        view.intent_login.setOnClickListener {
             findNavController().navigate(R.id.action_introFragment_to_loginFragment)
+        }
+        view.have_account.setOnClickListener{
+
         }
         return view
     }
