@@ -24,7 +24,6 @@
         tools:ignore="UnknownId" />
 
     <LinearLayout
-        android:id="@+id/pdfFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -32,10 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question_contents"
-        app:layout_constraintVertical_bias="1.0"
-        android:padding="10dp"
-        android:visibility="gone"
-        tools:ignore="UseCompoundDrawables">
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -49,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="@string/filename"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <androidx.appcompat.widget.Toolbar
@@ -101,11 +97,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button2"
-                app:layout_constraintEnd_toStartOf="@+id/postButton"
+                app:layout_constraintEnd_toStartOf="@+id/question_submit"
                 android:contentDescription="@string/front" />
 
             <ImageButton
-                android:id="@+id/postButton"
+                android:id="@+id/question_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_postbutton"

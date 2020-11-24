@@ -2,9 +2,7 @@ package com.junhyuk.daedo.main.bottomItem.home.paging
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-import com.example.propofolteam.data.EmailLoginResponse
-import com.example.propofolteam.data.FeedItemData
-import com.example.propofolteam.data.FeedItemResponse
+import com.example.propofolteam.data.FeedData
 import com.junhyuk.daedo.main.bottomItem.home.workinRetrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -13,50 +11,50 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FeedDataSource : PageKeyedDataSource<Int, FeedItemResponse>() {
+class FeedDataSource : PageKeyedDataSource<Int, FeedData>() {
 
-    internal val firstPage = 0
+    internal val firstPage = 1
     private val retrofitClient = RetrofitClient()
-    private var feedDataList = ArrayList<FeedItemResponse>()
+    private var feedDataList = ArrayList<FeedData>()
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, FeedItemResponse>
+        callback: LoadInitialCallback<Int, FeedData>
     ) {
         CoroutineScope(IO).launch {
             retrofitClient
                 .getInstance()
                 ?.getApi()
-                ?.requestFeed("Bearer ${EmailLoginResponse.instance!!.accessToken}",firstPage)
-                ?.enqueue(object : Callback<FeedItemData> {
+                ?.requestFeed(firstPage)
+                ?.enqueue(object : Callback<List<FeedData>> {
                     override fun onResponse(
-                        call: Call<FeedItemData>,
-                        response: Response<FeedItemData>
+                        call: Call<List<FeedData>>,
+                        response: Response<List<FeedData>>
                     ) {
                         if (response.body() != null) {
-                            callback.onResult(response.body()!!.response, null, firstPage + 1)
-                            Log.d("pageData", "data: ${response.body()}")
+                            feedDataList = response.body() as ArrayList<FeedData>
+                            Log.d("안드 스발것", "data: $feedDataList")
+                            callback.onResult(response.body()!!, null, firstPage + 1)
                         }
                     }
 
-                    override fun onFailure(call: Call<FeedItemData>, t: Throwable) {
-                        Log.d("page", "data: ${t.cause}")
-                        Log.d("page", "data: ${t.message}")
+                    override fun onFailure(call: Call<List<FeedData>>, t: Throwable) {
+
                     }
                 })
         }
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, FeedItemResponse>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, FeedData>) {
         CoroutineScope(IO).launch {
             retrofitClient
                 .getInstance()
                 ?.getApi()
-                ?.requestFeed("Bearer ${EmailLoginResponse.instance!!.accessToken}",params.key)
-                ?.enqueue(object : Callback<FeedItemData> {
+                ?.requestFeed(params.key)
+                ?.enqueue(object : Callback<List<FeedData>> {
                     override fun onResponse(
-                        call: Call<FeedItemData>,
-                        response: Response<FeedItemData>
+                        call: Call<List<FeedData>>,
+                        response: Response<List<FeedData>>
                     ) {
                         val key: Int? = if (params.key > 1) {
                             params.key - 1
@@ -64,30 +62,30 @@ class FeedDataSource : PageKeyedDataSource<Int, FeedItemResponse>() {
                             null
                         }
 
-                        callback.onResult(response.body()!!.response, key)
+                        callback.onResult(response.body()!!, key)
                     }
 
-                    override fun onFailure(call: Call<FeedItemData>, t: Throwable) {
+                    override fun onFailure(call: Call<List<FeedData>>, t: Throwable) {
 
                     }
                 })
         }
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, FeedItemResponse>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, FeedData>) {
         CoroutineScope(IO).launch {
             retrofitClient
                 .getInstance()
                 ?.getApi()
-                ?.requestFeed("Bearer ${EmailLoginResponse.instance!!.accessToken}",params.key)
-                ?.enqueue(object : Callback<FeedItemData> {
+                ?.requestFeed(params.key)
+                ?.enqueue(object : Callback<List<FeedData>> {
                     override fun onResponse(
-                        call: Call<FeedItemData>,
-                        response: Response<FeedItemData>
+                        call: Call<List<FeedData>>,
+                        response: Response<List<FeedData>>
                     ) {
 
 
-                        if (feedDataList.size % 10 == 0) {
+                        if (feedDataList.size % 15 == 0) {
                             val key: Int? = if (params.key <= 1) {
                                 params.key + 1
                             } else {
@@ -95,12 +93,12 @@ class FeedDataSource : PageKeyedDataSource<Int, FeedItemResponse>() {
                             }
 
 
-                            callback.onResult(response.body()!!.response, key)
+                            callback.onResult(response.body()!!, key)
 
                         }
                     }
 
-                    override fun onFailure(call: Call<FeedItemData>, t: Throwable) {
+                    override fun onFailure(call: Call<List<FeedData>>, t: Throwable) {
 
                     }
                 })

@@ -10,6 +10,7 @@ import com.example.propofolteam.data.EmailLoginRequest
 import com.example.propofolteam.data.EmailLoginResponse
 import com.example.propofolteam.module.LoginDialog
 import com.example.propofolteam.network.Service
+import com.example.propofolteam.view.MainActivity
 import com.example.propofolteam.view.MainBottomActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +33,7 @@ class LoginRetrofit {
         sweetAlertDialog.show()
 
         val loginService =
-            (getApplication as com.example.propofolteam.application.PropofolApplication).retrofit.create(
+            (getApplication as com.example.propofolteam.application.Application).retrofit.create(
                 Service::class.java
             )
         loginService.sendLoginInformation(EmailLoginRequest(email, password))

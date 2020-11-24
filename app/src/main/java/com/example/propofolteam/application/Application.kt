@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class PropofolApplication : Application() {
+class Application : Application() {
 
     lateinit var retrofit: Retrofit
     private var baseUrl: BaseUrl = BaseUrl()

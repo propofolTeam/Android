@@ -3,20 +3,19 @@ package com.junhyuk.daedo.main.bottomItem.home.paging
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
-import com.example.propofolteam.data.FeedItemData
-import com.example.propofolteam.data.FeedItemResponse
+import com.example.propofolteam.data.FeedData
 
-class FeedDataSourceFactory : DataSource.Factory<Int, FeedItemResponse>() {
+class FeedDataSourceFactory : DataSource.Factory<Int, FeedData>() {
 
-    private val mutableLiveData: MutableLiveData<PageKeyedDataSource<Int, FeedItemResponse>> = MutableLiveData()
+    private val mutableLiveData: MutableLiveData<PageKeyedDataSource<Int, FeedData>> = MutableLiveData()
 
-    override fun create(): DataSource<Int, FeedItemResponse> {
+    override fun create(): DataSource<Int, FeedData> {
         val feedDataSource = FeedDataSource()
         mutableLiveData.postValue(feedDataSource)
         return feedDataSource
     }
 
-    internal fun getFeedLiveData(): MutableLiveData<PageKeyedDataSource<Int, FeedItemResponse>>{
+    internal fun getFeedLiveData(): MutableLiveData<PageKeyedDataSource<Int, FeedData>>{
         return mutableLiveData
     }
 
