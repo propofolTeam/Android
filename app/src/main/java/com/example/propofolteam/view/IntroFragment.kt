@@ -21,9 +21,6 @@ class IntroFragment : Fragment() {
         view.intent_login.setOnClickListener {
             findNavController().navigate(R.id.action_introFragment_to_loginFragment)
         }
-        view.have_account.setOnClickListener{
-
-        }
         return view
     }
 }
