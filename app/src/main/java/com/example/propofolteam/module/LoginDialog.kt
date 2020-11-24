@@ -30,6 +30,8 @@ class LoginDialog {
                         ContextCompat.startActivity(context, intent, null)
                         (context as Activity).finish()
                         ActivityCompat.finishAffinity(context)
+                        dialog.dismiss()
+
                     }
                     .show()
 
