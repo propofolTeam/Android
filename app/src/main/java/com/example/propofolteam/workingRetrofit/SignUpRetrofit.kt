@@ -2,14 +2,12 @@ package com.example.propofolteam.workingRetrofit
 
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.propofolteam.R
 import com.example.propofolteam.module.SignUpDialog
 import com.example.propofolteam.network.Service
-import com.example.propofolteam.view.IntroFragment
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONObject
@@ -38,7 +36,7 @@ class SignUpRetrofit {
 
         //signUp 서비스
         val signUpService =
-            (getApplication as com.example.propofolteam.application.Application).retrofit.create(
+            (getApplication as com.example.propofolteam.application.PropofolApplication).retrofit.create(
                 Service::class.java
             )
 

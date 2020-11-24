@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.propofolteam.R
 import com.junhyuk.daedo.main.bottomItem.home.adapter.FeedAdapter
-import com.junhyuk.daedo.main.bottomItem.home.model.FeedViewModel
+import com.example.propofolteam.view.ui.home.model.FeedViewModel
 import kotlinx.android.synthetic.main.activity_main_bottom.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -27,11 +27,14 @@ class HomeFragment : Fragment() {
 
         val feedViewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
 
-        val feedAdapter = FeedAdapter(activity?.applicationContext!!)
+        val feedAdapter = FeedAdapter(activity?.applicationContext!!, requireActivity())
 
         feedViewModel.feedPagedList.observe(viewLifecycleOwner, {
             feedAdapter.submitList(it)
         })
+
+        view.feedRecyclerView.adapter = feedAdapter
+
         return view
     }
 }
