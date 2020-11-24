@@ -26,5 +26,13 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.propofolteam.view.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpDetailFragment"
+            app:destination="@id/signUpDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpDetailFragment"
+        android:name="com.example.propofolteam.view.SignUpDetailFragment"
+        android:label="SignUpDetailFragment" />
 </navigation>

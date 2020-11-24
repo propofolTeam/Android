@@ -13,7 +13,7 @@ class SignUpDetailFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
+        val view = inflater.inflate(R.layout.fragment_sign_up_detail, container, false)
 
         return view
     }

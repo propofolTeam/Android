@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="button_color">#4E6AFF</color>
     <color name="gray">#191919</color>
+    <color name="faild">#ff1100</color>
 </resources>

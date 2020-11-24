@@ -16,7 +16,7 @@ class LoginFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
-        view.have_account.setOnClickListener{
+        view.login_have_account.setOnClickListener{
             findNavController().navigate(R.id.action_introFragment_to_signUpFragment)
         }
         return view
