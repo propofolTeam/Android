@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">propofolTeam</string>
     <string name="EmailLogin">Email Login</string>
+    <string name="title_activity_main_bottom">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="profile">profile</string>
+    <string name="post">post</string>
 </resources>
