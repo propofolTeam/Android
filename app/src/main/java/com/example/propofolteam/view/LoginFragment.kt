@@ -17,7 +17,7 @@ class LoginFragment : Fragment(){
     private var email: String = ""
     //사용자의 비밀번호를 받을 변수
     private var password: String = ""
-    private var LoginRetrofit = com.example.propofolteam.workingRetrofit.LoginRetrofit()
+    private var loginRetrofit = com.example.propofolteam.workingRetrofit.LoginRetrofit()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +35,7 @@ class LoginFragment : Fragment(){
             password = view.login_password.text.toString()
             //사용자 비밀번호 암호화
             //getEmailLogin 클래스로 사용자가 입력한 값 전달
-            LoginRetrofit.getEmailLogin(email, password, requireActivity().application, requireContext())
+            loginRetrofit.getEmailLogin(email, password, requireActivity().application, requireContext())
         }
         return view
     }

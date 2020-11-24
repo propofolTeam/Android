@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
 
@@ -13,6 +14,7 @@ class SignUpDialog {
         responseCode: Int,
         context: Context,
         responseBody: String,
+        intent: Intent,
         sweetAlertDialog: SweetAlertDialog
     ) {
         //통신 성공
@@ -25,7 +27,9 @@ class SignUpDialog {
 
                 dialog.setTitleText("회원가입 성공!")
                     .setConfirmClickListener {
-                        dialog.dismiss()
+                        startActivity(context, intent, null)
+                        (context as Activity).finish()
+                        ActivityCompat.finishAffinity(context)
                     }
                     .show()
 

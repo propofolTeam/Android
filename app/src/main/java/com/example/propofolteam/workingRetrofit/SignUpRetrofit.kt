@@ -1,21 +1,27 @@
 package com.example.propofolteam.workingRetrofit
 
+import android.R.drawable
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.util.Log
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.propofolteam.R
 import com.example.propofolteam.module.SignUpDialog
 import com.example.propofolteam.network.Service
-import com.example.propofolteam.view.IntroFragment
+import com.example.propofolteam.view.MainActivity
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+
 
 class SignUpRetrofit {
     internal fun setupRetrofit(
@@ -49,17 +55,18 @@ class SignUpRetrofit {
         builder.addFormDataPart("password", password)
         builder.addFormDataPart("name", userName)
 
+
         if (profile != null) {
             builder.addFormDataPart("image", imageName, profile)
         } else {
-            builder.addFormDataPart("image",R.drawable.ic_profile.toString())
+               builder.addFormDataPart("image", imageName, profile)
         }
 
         val signUpBody: RequestBody = builder.build()
 
         signUpService.requestSignUp(signUpBody)
             .enqueue(object : Callback<JSONObject> {
-
+                val intent = Intent(context, MainActivity::class.java)
                 val signUpDialog = SignUpDialog()
 
                 override fun onResponse(
@@ -71,6 +78,7 @@ class SignUpRetrofit {
                         response.code(),
                         context,
                         response.errorBody()?.string().toString(),
+                        intent,
                         sweetAlertDialog
                     )
                 }
