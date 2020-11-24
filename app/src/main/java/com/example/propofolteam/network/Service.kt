@@ -1,8 +1,6 @@
 package com.example.propofolteam.network
 
-import com.example.propofolteam.data.EmailLoginRequest
-import com.example.propofolteam.data.EmailLoginResponse
-import com.example.propofolteam.data.UserProfileResponse
+import com.example.propofolteam.data.*
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -25,9 +23,24 @@ interface Service {
         @Body postBody: RequestBody
     ):Call<JSONObject>
 
-    @GET("/user/profile?")
-    fun getProfile(
-        @Query("page") page : String,
-        @Header("Authorization") token: String
-    ):Call<UserProfileResponse>
+    @POST("/comment/{postId}")
+    fun sendComment(
+        @Header("Authorization") type:String,
+        @Body CommentBody: CommentRequest,
+        @Path("postId") id: Int
+    ): Call<JSONObject>
+
+    @GET("/post/{page}")
+    fun getPost(
+        @Header("Authorization") type:String,
+        @Path("page") id: Int
+    ): Call<PostResponse>
+
+    @GET("/post/{postId}/download/{fileName}")
+    fun downloadPdf(
+        @Header("Authorization") type:String,
+        @Path("postId") postId: Long,
+        @Path("fileName") fileName: String
+    ): Call<PdfResponse>
+
 }
