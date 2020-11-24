@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">propofolTeam</string>
+    <string name="EmailLogin">Email Login</string>
 </resources>
