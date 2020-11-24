@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.52" />
 
     <TextView
-        android:id="@+id/have_account"
+        android:id="@+id/login_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="계정이 없으신가요?"
@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="0.58000004" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/login_btn"
         android:layout_width="296dp"
         android:layout_height="40dp"
         android:background="@drawable/btn_shape"

@@ -17,4 +17,5 @@
     <color name="gray">#F3F3F3</color>
     <color name="gray_dark">#2B2B2B</color>
     <color name="gray_text">#666666</color>
+    <color name="faild">#ff0000</color>
 </resources>

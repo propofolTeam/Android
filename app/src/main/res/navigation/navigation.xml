@@ -11,9 +11,28 @@
         <action
             android:id="@+id/action_introFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_introFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.propofolteam.view.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.propofolteam.view.SignUpFragment"
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpDetailFragment"
+            app:destination="@id/signUpDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpDetailFragment"
+        android:name="com.example.propofolteam.view.SignUpDetailFragment"
+        android:label="SignUpDetailFragment" />
 </navigation>
