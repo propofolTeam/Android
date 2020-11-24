@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.propofolteam.R
 import com.junhyuk.daedo.main.bottomItem.home.adapter.FeedAdapter
 import com.junhyuk.daedo.main.bottomItem.home.model.FeedViewModel
+import kotlinx.android.synthetic.main.activity_main_bottom.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
@@ -19,6 +20,8 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        requireActivity().nav_view.visibility = View.VISIBLE
 
         view.feedRecyclerView.setHasFixedSize(true)
 

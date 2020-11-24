@@ -2,7 +2,7 @@ package com.junhyuk.daedo.main.bottomItem.home.paging
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-import com.junhyuk.daedo.main.bottomItem.home.data.FeedData
+import com.example.propofolteam.data.FeedData
 import com.junhyuk.daedo.main.bottomItem.home.workinRetrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
