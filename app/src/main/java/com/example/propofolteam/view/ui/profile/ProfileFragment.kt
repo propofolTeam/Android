@@ -1,4 +1,4 @@
-package com.example.propofolteam.view
+package com.example.propofolteam.view.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

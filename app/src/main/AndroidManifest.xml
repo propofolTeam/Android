@@ -11,7 +11,7 @@
         android:theme="@style/Theme.PropofolTeam">
         <activity
             android:name=".view.MainBottomActivity"
-            android:label="@string/title_activity_main_bottom"></activity>
+            android:label="@string/title_activity_main_bottom" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
