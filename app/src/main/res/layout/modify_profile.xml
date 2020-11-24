@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ProfileFragment">
+    tools:context=".view.ui.profile.ModifyProfile">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,36 +30,23 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/modifyButton"
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:background="@drawable/rectangle9"
-            android:text="프로필 편집"
+            android:text="편집 완료"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="내 게시물" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/myUpload"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </androidx.recyclerview.widget.RecyclerView>
-        </LinearLayout>
-
     </LinearLayout>
-
+    <ImageView
+        android:id="@+id/gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="60dp"
+        android:layout_gravity="center_horizontal"
+        tools:src="@drawable/modify_image" />
 </FrameLayout>
