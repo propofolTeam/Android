@@ -1,6 +1,5 @@
 package com.example.propofolteam.view.ui.home.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,15 +13,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.propofolteam.R
-import com.example.propofolteam.data.FeedResponseItemData
+import com.example.propofolteam.data.FeedItemResponse
 import com.example.propofolteam.module.FeedTime
 import com.example.propofolteam.network.BaseUrl
-import com.junhyuk.daedo.main.bottomItem.home.paging.DiffUtilCallBack
+import com.example.propofolteam.view.ui.home.paging.DiffUtilCallBack
 import kotlinx.android.synthetic.main.post_item.view.*
 
 
-class FeedAdapter(private val context: Context, private val activity: Activity) :
-    PagedListAdapter<FeedResponseItemData, FeedAdapter.Holder>(DiffUtilCallBack()) {
+class FeedAdapter(private val context: Context) :
+    PagedListAdapter<FeedItemResponse, FeedAdapter.Holder>(DiffUtilCallBack()) {
 
     //모듈 정의
     private val feedPostTime = FeedTime()
@@ -31,6 +30,7 @@ class FeedAdapter(private val context: Context, private val activity: Activity) 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
+        Log.d("page", "data: 안드 씨바련아")
         return Holder(view)
     }
 

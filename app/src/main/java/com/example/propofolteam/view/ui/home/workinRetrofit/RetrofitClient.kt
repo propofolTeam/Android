@@ -1,11 +1,11 @@
-package com.junhyuk.daedo.main.bottomItem.home.workinRetrofit
+package com.example.propofolteam.view.ui.home.workinRetrofit
 
 import com.example.propofolteam.network.BaseUrl
-import com.junhyuk.daedo.main.bottomItem.home.server.FeedService
+import com.example.propofolteam.view.ui.home.server.FeedService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitClient() {
+class RetrofitClient {
 
     private var instance: RetrofitClient? = null
     private val retrofit: Retrofit
@@ -27,7 +27,7 @@ class RetrofitClient() {
         return instance
     }
 
-    internal fun getApi(): FeedService{
+    internal fun getApi(): FeedService {
         return retrofit.create(FeedService::class.java)
     }
 }
