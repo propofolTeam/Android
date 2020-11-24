@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.propofolteam.R
+import com.example.propofolteam.data.FeedItemData
 import com.example.propofolteam.data.FeedItemResponse
 import com.example.propofolteam.module.FeedTime
 import com.example.propofolteam.network.BaseUrl
@@ -30,7 +32,6 @@ class FeedAdapter(private val context: Context) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
-        Log.d("page", "data: 안드 씨바련아")
         return Holder(view)
     }
 
@@ -40,6 +41,11 @@ class FeedAdapter(private val context: Context) :
         holder.title.text = feedData!!.title
         holder.content.visibility = View.GONE
         holder.writer.text = feedData.writer
+
+        holder.itemView.setOnClickListener {
+            FeedItemData.postId = position + 1
+            holder.itemView.findNavController().navigate(R.id.action_navigation_home_to_feedDetailFragment)
+        }
 
         Log.d("urlTest", "data: ${baseUrl.BaseURL}/image/${feedData.image}")
 
