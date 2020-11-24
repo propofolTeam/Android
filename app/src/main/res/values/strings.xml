@@ -10,8 +10,4 @@
     <string name="gang">gang</string>
     <string name="content">질문 내용을 입력해주세요</string>
     <string name="title">제목</string>
-    <string name="front">front</string>
-    <string name="back">back</string>
-    <string name="file">file</string>
-    <string name="filename">fileName</string>
 </resources>
