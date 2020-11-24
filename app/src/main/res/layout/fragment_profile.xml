@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
-            android:background="@drawable/Rectangle9"
+            android:background="@drawable/rectangle9"
             android:text="프로필 편집"
             android:textColor="@color/white"
             android:textStyle="bold" />
