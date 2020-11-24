@@ -36,6 +36,13 @@ interface Service {
         @Path("page") id: Int
     ): Call<PostResponse>
 
+    @GET("/user/profile")
+    fun getUserProfile(
+        @Query("page") id: String,
+        @Header("Authorization") type:String
+
+    ): Call<UserProfileResponse>
+
     @GET("/post/{postId}/download/{fileName}")
     fun downloadPdf(
         @Header("Authorization") type:String,

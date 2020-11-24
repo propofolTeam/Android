@@ -28,9 +28,9 @@ class ProfileRetrofit {
             (getApplication as com.example.propofolteam.application.PropofolApplication).retrofit.create(
                 Service::class.java
             )
-        Log.d("test","안드 씨발련아")
+
         val token = EmailLoginResponse.instance!!.accessToken
-        profileService.getProfile("0","Bearer $token")
+        profileService.getUserProfile("0","Bearer $token")
             .enqueue(object : Callback<UserProfileResponse> {
                 override fun onResponse(
                     call: Call<UserProfileResponse>,
@@ -38,11 +38,11 @@ class ProfileRetrofit {
                 ) {
                         //서버로부터 받은 정보들을 EmailLoginBody 변수에 담아준다
                         UserProfileResponse.instance = response.body()
-                        Log.d("tqest","test : ${UserProfileResponse.instance!!.image}")
+
                 }
                 //서버와 연결 실패
                 override fun onFailure(call: Call<UserProfileResponse>, t: Throwable) {
-                    Log.d("안드 씨발련아","안드 ㅂ여신련아")
+
                 }
             })
     }
