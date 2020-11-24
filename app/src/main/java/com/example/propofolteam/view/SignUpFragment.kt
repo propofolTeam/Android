@@ -26,6 +26,8 @@ class SignUpFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
         view.intent_sign_up_detail.setOnClickListener {
+            (activity as MainActivity).email = view.sign_up_email.text.toString()
+            (activity as MainActivity).password = view.sign_up_password.text.toString()
             findNavController().navigate(R.id.action_signUpFragment_to_signUpDetailFragment)
         }
         view.sign_up_email.addTextChangedListener(object : TextWatcher {

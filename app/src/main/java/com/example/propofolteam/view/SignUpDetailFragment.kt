@@ -76,8 +76,10 @@ class SignUpDetailFragment : Fragment(){
                 checkNameMsg()
             }
         })
-        sign_up_btn.setOnClickListener {
-            setupRetrofit.setupRetrofit(email, password, userName, profileImage, imageName, requireActivity().application, this)
+        view.sign_up_btn.setOnClickListener {
+            email  = (activity as MainActivity).email
+            password = (activity as MainActivity).password
+            setupRetrofit.setupRetrofit(email, password, userName, profileImage, imageName, requireActivity().application, requireContext())
         }
         return view
     }

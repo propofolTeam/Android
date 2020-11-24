@@ -6,10 +6,13 @@ import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.example.propofolteam.R
+import com.example.propofolteam.module.SignUpDialog
 import com.example.propofolteam.network.Service
 import com.example.propofolteam.view.IntroFragment
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,46 +38,45 @@ class SignUpRetrofit {
 
         //signUp 서비스
         val signUpService =
-            (getApplication as com.example.propofolteam.application.Application).retrofit.create(Service::class.java)
+            (getApplication as com.example.propofolteam.application.Application).retrofit.create(
+                Service::class.java
+            )
 
         //서버에 보낼 데이터
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
 
         builder.addFormDataPart("email", email)
         builder.addFormDataPart("password", password)
-        builder.addFormDataPart("username", userName)
+        builder.addFormDataPart("name", userName)
 
-        if (profile != null){
-            builder.addFormDataPart("profile", imageName, profile)
+        if (profile != null) {
+            builder.addFormDataPart("image", imageName, profile)
+        } else {
+            builder.addFormDataPart("image",R.drawable.ic_profile.toString())
         }
 
         val signUpBody: RequestBody = builder.build()
 
-        //signUp 서비스 결과 값
         signUpService.requestSignUp(signUpBody)
-            .enqueue(object : Callback<SignUpResponse> {
+            .enqueue(object : Callback<JSONObject> {
+
                 val signUpDialog = SignUpDialog()
 
-                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                    signUpDialog.connectionFail(context, sweetAlertDialog)
-                }
-
                 override fun onResponse(
-                    call: Call<SignUpResponse>,
-                    response: Response<SignUpResponse>
+                    call: Call<JSONObject>,
+                    response: Response<JSONObject>
                 ) {
-                    val intent = Intent(context, IntroFragment::class.java)
-
-                    Log.d("500씨발련아", "data: ${response.errorBody()?.string()}")
-
+                    Log.d("test", "test")
                     signUpDialog.connectionSuccess(
                         response.code(),
                         context,
                         response.errorBody()?.string().toString(),
-                        intent,
                         sweetAlertDialog
                     )
+                }
 
+                override fun onFailure(call: Call<JSONObject>, t: Throwable) {
+                    signUpDialog.connectionFail(context, sweetAlertDialog)
                 }
 
             })
