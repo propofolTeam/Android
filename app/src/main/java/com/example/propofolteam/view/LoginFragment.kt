@@ -23,7 +23,7 @@ class LoginFragment : Fragment(){
         }
 
         view.login_btn.setOnClickListener {
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            startActivity(Intent(requireContext(), MainBottomActivity::class.java))
         }
         return view
     }
