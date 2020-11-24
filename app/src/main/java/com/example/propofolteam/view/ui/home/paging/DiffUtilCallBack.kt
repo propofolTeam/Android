@@ -1,7 +1,7 @@
 package com.junhyuk.daedo.main.bottomItem.home.paging
 
 import androidx.recyclerview.widget.DiffUtil
-import com.junhyuk.daedo.main.bottomItem.home.data.FeedData
+import com.example.propofolteam.data.FeedData
 
 class DiffUtilCallBack : DiffUtil.ItemCallback<FeedData>() {
     override fun areItemsTheSame(oldItem: FeedData, newItem: FeedData): Boolean {

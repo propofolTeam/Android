@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.propofolteam.R
-import com.junhyuk.daedo.main.bottomItem.home.data.FeedData
+import com.example.propofolteam.data.FeedData
 import com.junhyuk.daedo.main.bottomItem.home.paging.DiffUtilCallBack
 
 
