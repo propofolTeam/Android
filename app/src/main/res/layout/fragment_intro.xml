@@ -22,7 +22,7 @@
         />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/intro_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="계정이 없으신가요?"
