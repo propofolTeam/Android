@@ -1,14 +1,15 @@
-package com.junhyuk.daedo.main.bottomItem.home.paging
+package com.example.propofolteam.view.ui.home.paging
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.propofolteam.data.FeedData
+import com.example.propofolteam.data.FeedItemData
+import com.example.propofolteam.data.FeedItemResponse
 
-class DiffUtilCallBack : DiffUtil.ItemCallback<FeedData>() {
-    override fun areItemsTheSame(oldItem: FeedData, newItem: FeedData): Boolean {
+class DiffUtilCallBack : DiffUtil.ItemCallback<FeedItemResponse>() {
+    override fun areItemsTheSame(oldItem: FeedItemResponse, newItem: FeedItemResponse): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: FeedData, newItem: FeedData): Boolean {
+    override fun areContentsTheSame(oldItem: FeedItemResponse, newItem: FeedItemResponse): Boolean {
         return oldItem == newItem
     }
 
