@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.propofolteam.R
 
 class ModifyProfile : Fragment() {
 
@@ -13,6 +14,8 @@ class ModifyProfile : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        val view = inflater.inflate(R.layout.modify_profile, container, false)
+
+        return view
     }
 }
