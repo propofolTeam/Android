@@ -18,9 +18,13 @@ class ProfileFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val url = "https://lh6.ggpht.com/9SZhHdv4URtBzRmXpnWxZcYhkgTQurFuuQ8OR7WZ3R7fyTmha77dYkVvcuqMu3DLvMQ=w300"
         Glide.with(this)
-            .load("https://lh6.ggpht.com/9SZhHdv4URtBzRmXpnWxZcYhkgTQurFuuQ8OR7WZ3R7fyTmha77dYkVvcuqMu3DLvMQ=w300")
+            .load(url)
+            .circleCrop()
+            .placeholder(R.mipmap.ic_launcher)
             .into(view.profileImg)
+
         return view
     }
 }
