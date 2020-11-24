@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PropofolTeam">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".view.MainBottomActivity"
+            android:label="@string/title_activity_main_bottom"></activity>
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
