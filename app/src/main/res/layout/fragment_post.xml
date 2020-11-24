@@ -23,6 +23,31 @@
         app:layout_constraintVertical_bias="0.02"
         tools:ignore="UnknownId" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question_contents"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_file"
+            android:contentDescription="@string/file" />
+
+        <TextView
+            android:id="@+id/fileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/filename"
+            android:textSize="20sp" />
+    </LinearLayout>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
@@ -49,7 +74,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button2"/>
+                app:layout_constraintEnd_toStartOf="@+id/button2"
+                android:contentDescription="@string/file" />
 
             <ImageButton
                 android:id="@+id/button2"
@@ -61,7 +87,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/addFile"
                 app:layout_constraintEnd_toStartOf="@+id/button3"
-                />
+                android:contentDescription="@string/back" />
 
             <ImageButton
                 android:id="@+id/button3"
@@ -71,7 +97,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button2"
-                app:layout_constraintEnd_toStartOf="@+id/question_submit"/>
+                app:layout_constraintEnd_toStartOf="@+id/question_submit"
+                android:contentDescription="@string/front" />
 
             <ImageButton
                 android:id="@+id/question_submit"
@@ -82,7 +109,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button3"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:layout_editor_absoluteY="683dp" />
+                tools:layout_editor_absoluteY="683dp"
+                android:contentDescription="@string/post" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -105,7 +133,8 @@
         app:layout_constraintHeight_percent="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question_title"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.05"
+        android:inputType="text" />
 
 
 
