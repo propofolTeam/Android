@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.propofolteam.R
+import com.example.propofolteam.workingRetrofit.ProfileRetrofit
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile.view.profileImg
-import kotlinx.android.synthetic.main.modify_profile.view.*
 
 
 class ProfileFragment : Fragment() {
+
+    private var ProfileRetrofit = com.example.propofolteam.workingRetrofit.ProfileRetrofit()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

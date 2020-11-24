@@ -4,10 +4,7 @@ import com.example.propofolteam.data.*
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 
 interface Service {
     @POST("/user/join")
@@ -20,9 +17,11 @@ interface Service {
         @Body LoginInformation : EmailLoginRequest
     ): Call<EmailLoginResponse>
 
-    @GET("/user/profile")
-    fun MyProfileCheck(
-        @Body MyInformation : ProfileRequest
+    @GET("/user/profile?userId=1&page=1")
+    fun MyProfileInformationCheck(
+        @Header("Authorization") type: String,
+        @Body MyInformation: ProfileRequest
     ): Call<ProfileResponse>
+
 
 }
