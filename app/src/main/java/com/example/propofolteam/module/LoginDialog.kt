@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.example.propofolteam.view.MainBottomActivity
 import kotlinx.coroutines.delay
 
 class LoginDialog {
@@ -29,7 +30,6 @@ class LoginDialog {
                         ContextCompat.startActivity(context, intent, null)
                         (context as Activity).finish()
                         ActivityCompat.finishAffinity(context)
-                        dialog.dismiss()
                     }
                     .show()
 
@@ -66,6 +66,9 @@ class LoginDialog {
             }
         }
     }
+
+
+
     //서버 통신 실패
     fun connectionFail(context: Context, sweetAlertDialog: SweetAlertDialog) {
 

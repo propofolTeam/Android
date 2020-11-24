@@ -11,6 +11,7 @@ import com.example.propofolteam.data.EmailLoginResponse
 import com.example.propofolteam.module.LoginDialog
 import com.example.propofolteam.network.Service
 import com.example.propofolteam.view.MainActivity
+import com.example.propofolteam.view.MainBottomActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,7 +44,7 @@ class LoginRetrofit {
                     response: Response<EmailLoginResponse>
                 ) {
                     //다음 화면으로 이동
-                    val intent = Intent(context, MainActivity::class.java)
+                    val intent = Intent(context, MainBottomActivity::class.java)
 
                     //통신성공
                     if (response.code() == 200) {
