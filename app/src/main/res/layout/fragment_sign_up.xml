@@ -15,6 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SignUp"
+        android:fontFamily="@font/bold"
+        android:textColor="#000000"
         android:textSize="25sp"
         tools:layout_editor_absoluteX="244dp"
         tools:layout_editor_absoluteY="56dp" />
@@ -77,6 +79,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.65"
         android:layout_width="296dp"
+        android:fontFamily="@font/bold"
         android:layout_height="40dp"
         android:background="@drawable/btn_shape"
         android:text="Next"
