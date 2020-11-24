@@ -66,7 +66,7 @@ class PostFragment : Fragment() {
 
         view.postButton.setOnClickListener {
 
-            if (view.question_contents.text.isNotEmpty() || view.question_title.text.isNotEmpty() || pdfFile != null) {
+            if (view.question_contents.text.isNotEmpty() && view.question_title.text.isNotEmpty() && pdfFile != null) {
 
                 //로딩 다이얼로그
                 val sweetAlertDialog = SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE)

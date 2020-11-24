@@ -25,6 +25,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentResolverCompat.query
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -81,6 +82,11 @@ class SignUpDetailFragment : Fragment(){
             password = (activity as MainActivity).password
             setupRetrofit.setupRetrofit(email, password, userName, profileImage, imageName, requireActivity().application, requireContext())
         }
+
+        view.sign_up_detail_have_account.setOnClickListener {
+            findNavController().navigate(R.id.action_signUpDetailFragment_to_loginFragment)
+        }
+
         return view
     }
 
