@@ -3,7 +3,7 @@ package com.junhyuk.daedo.main.bottomItem.home.paging
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
-import com.junhyuk.daedo.main.bottomItem.home.data.FeedData
+import com.example.propofolteam.data.FeedData
 
 class FeedDataSourceFactory : DataSource.Factory<Int, FeedData>() {
 

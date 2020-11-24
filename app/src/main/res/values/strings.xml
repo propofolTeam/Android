@@ -8,4 +8,6 @@
     <string name="profile">profile</string>
     <string name="post">post</string>
     <string name="gang">gang</string>
+    <string name="content">질문 내용을 입력해주세요</string>
+    <string name="title">제목</string>
 </resources>

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PageKeyedDataSource
 import androidx.paging.PagedList
-import com.junhyuk.daedo.main.bottomItem.home.data.FeedData
+import com.example.propofolteam.data.FeedData
 import com.junhyuk.daedo.main.bottomItem.home.paging.FeedDataSource
 import com.junhyuk.daedo.main.bottomItem.home.paging.FeedDataSourceFactory
 
