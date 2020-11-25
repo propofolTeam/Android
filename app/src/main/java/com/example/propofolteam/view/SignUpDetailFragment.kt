@@ -181,7 +181,7 @@ class SignUpDetailFragment : Fragment(){
             view?.sign_up_btn?.isEnabled = true
         } else {
             view?.name?.setBackgroundResource(R.drawable.email_false)
-            view?.name?.isEnabled = false
+            view?.sign_up_btn?.isEnabled = false
         }
     }
 }
